@@ -1,0 +1,54 @@
+//A class containing functions and data relating to an individual player.
+
+namespace Game {
+    public class PlayerData {
+        //PRIVATE
+        //
+        //
+        //
+        //The player hand of cards
+        Hand hand = new Hand();
+        int tp;
+        int mp;
+        int ec; //exposure counters
+        int cs; //command counters/seals
+
+        string name;
+
+        //Private flags
+        bool canPlaySurvey = true;
+        bool isStillHidden = true;
+
+        private void PlayerInit(int tpVal, int mpVal, int ecVal, int csVal, string nameVal) {
+            tp = tpVal;
+            mp = mpVal;
+            ec = ecVal;
+            cs = csVal;
+            name = nameVal;
+        }
+        //PUBLIC
+        //
+        //
+        //
+        public PlayerData(int tacticPoints, int manaPoints, int exposureCounters, int commandCounters, string playerName) {
+            PlayerInit(tacticPoints, manaPoints, exposureCounters, commandCounters, playerName);
+        }
+
+        public void IncreaseValue(int change, string attribute) {
+            switch (attribute) {
+                case "tp": tp += change; break;
+                case "mp": mp += change; break;
+                case "ec": ec += change; break;
+                case "cs": cs += change; break;
+            }
+        }
+        public void DecreaseValue(int change, string attribute) {
+            switch (attribute) {
+                case "tp": tp -= change; break;
+                case "mp": mp -= change; break;
+                case "ec": ec -= change; break;
+                case "cs": cs -= change; break;
+            }
+        }
+    }
+}

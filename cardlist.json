@@ -1,0 +1,32 @@
+[
+    {
+        "visible" : "false",
+        "name": "Bounded Field",
+        "type": "Field",
+        "body": "Set up a bounded field, causing your enemy to be unable to use survey cards against you. Expires in Break phase.",
+        "cost": {
+            "tp": 1,
+            "mp": 0,
+            "ec": 0,
+            "cs": 0
+        },
+        "effects": {
+            
+        }
+    },
+    {
+        "visible": "false",
+        "name": "Familiar's Flight",
+        "type" : "Survey",
+        "body": "Send a familiar to scout out your opponent. Add 1 Exposure Counter. Reveal one Break card on the field.",
+        "cost": {
+            "tp": 1,
+            "mp": 0,
+            "ec": 1,
+            "cs": 0
+        },
+        "effects": {
+
+        }
+    }
+]
