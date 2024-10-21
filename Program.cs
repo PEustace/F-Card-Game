@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿namespace Game {
+    public class Program() {
+        public static void Main() {
+            Deck deck = new Deck();
+            Console.WriteLine("Deck created.");
+            deck.TestDeck();
+            Console.WriteLine("Finished");
+        }
+    }
+}

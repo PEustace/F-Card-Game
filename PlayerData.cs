@@ -15,9 +15,8 @@ namespace Game {
 
         string name;
 
-        //Private flags
-        bool canPlaySurvey = true;
-        bool isStillHidden = true;
+        //Private flags (i.e. if they can play survey or if they are still hidden)
+        Dictionary<string, bool> flags = new();
 
         private void PlayerInit(int tpVal, int mpVal, int ecVal, int csVal, string nameVal) {
             tp = tpVal;

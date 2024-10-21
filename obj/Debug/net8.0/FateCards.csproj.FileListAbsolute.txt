@@ -12,3 +12,5 @@ c:\Users\Phill\Documents\W_Dev\C#\FateCards\obj\Debug\net8.0\refint\FateCards.dl
 c:\Users\Phill\Documents\W_Dev\C#\FateCards\obj\Debug\net8.0\FateCards.pdb
 c:\Users\Phill\Documents\W_Dev\C#\FateCards\obj\Debug\net8.0\FateCards.genruntimeconfig.cache
 c:\Users\Phill\Documents\W_Dev\C#\FateCards\obj\Debug\net8.0\ref\FateCards.dll
+c:\Users\Phill\Documents\W_Dev\C#\FateCards\obj\Debug\net8.0\FateCards.sourcelink.json
+c:\Users\Phill\Documents\W_Dev\C#\FateCards\bin\Debug\net8.0\cardlist.json
