@@ -13,8 +13,8 @@ namespace Game {
         //
         //
         public Hand() {
-            Console.WriteLine("Beginning Hand construction.");
             handContents = DrawCards(Gamemaster.defaultDrawCount);
+            Console.WriteLine("Beginning Hand construction: " + handContents);
             foreach (Card card in handContents) {
                 Console.WriteLine("My hand has: " + card.GetName());
             }

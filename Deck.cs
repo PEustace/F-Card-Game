@@ -31,6 +31,14 @@ namespace Game {
         //
         public Deck() {
             CreateDeck();
+            foreach(Card card in deck) {
+                if (card.GetName().Length > 0) {
+                    card.TagEffectsToCard();
+                }
+                else {
+                    Console.WriteLine("Ill.");
+                }
+            }
         }
         public void TestDeck() {
             foreach(Card card in deck) {

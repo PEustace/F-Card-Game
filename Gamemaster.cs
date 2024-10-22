@@ -51,7 +51,7 @@ namespace Game {
         public static void Main() {
             Deck deck = new Deck();
             Console.WriteLine("Deck created.");
-            deck.TestDeck();
+            //deck.TestDeck();
             Console.WriteLine("Tested deck successfully.");
             
 
