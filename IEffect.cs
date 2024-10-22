@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Text.Json.Nodes;
 
 namespace Game {
@@ -6,20 +7,29 @@ namespace Game {
         //
         //
         //
-        //A list of all flags in the game with default values
-        private void EffectAction() {}
         //PUBLIC
         //
         //
         //
+        public void EffectAction() {
+
+        }
     }
 
-    public class ChangeEnemyAttribute : IEffect {
-        private void EffectAction() {
-            
+    public class ChangeEnemyAttribute : Gamemaster, IEffect {
+        public void EffectAction() {
+
         }
         public ChangeEnemyAttribute(string flagToChange, bool newFlagValue) {
-            PlayerData.ChangeFlag(flagToChange, newFlagValue);
+            GetEnemyObject("Player 2").ChangeFlag(flagToChange, newFlagValue);
+        }
+    }
+    public class ChangeCardAttribute : Gamemaster, IEffect {
+        public void EffectAction() {
+
+        }
+        public ChangeCardAttribute(string flagToChange, bool newFlagValue) {
+            
         }
     }
 }

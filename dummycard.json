@@ -1,0 +1,15 @@
+{
+        "Visible" : false,
+        "Name": "Burned Circuits",
+        "Type": "Burnout",
+        "Body": "You are out of cards available to draw. You must end the battle soon.",
+        "Cost": {
+            "tp": 0,
+            "mp": 0,
+            "ec": 0,
+            "cs": 0
+        },
+        "EffectsStringList": [
+            "dummy"
+        ]
+}

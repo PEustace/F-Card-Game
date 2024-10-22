@@ -39,6 +39,9 @@ namespace Game {
             InitFlags();
         }
 
+        public string GetName() {
+            return name;
+        }
         public void ChangeFlag(string flagName, bool newFlagValue) {
             flags[flagName] = newFlagValue;
         }

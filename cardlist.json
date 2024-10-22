@@ -10,13 +10,13 @@
             "ec": 0,
             "cs": 0
         },
-        "EffectsList": [
+        "EffectsStringList": [
             "blockEnemySurvey","cardExpiresInBreak"
         ]
     },
     {
         "Visible": false,
-        "Name": "Familiar's Flight",
+        "Name": "Bird Familiar",
         "Type" : "Survey",
         "Body": "Send a familiar to scout out your opponent. Add 1 Exposure Counter. Reveal one Break card on the field.",
         "Cost": {
@@ -25,7 +25,67 @@
             "ec": 1,
             "cs": 0
         },
-        "EffectsList": [
+        "EffectsStringList": [
+            "revealEnemyCards"
+        ]
+    },
+    {
+        "Visible" : false,
+        "Name": "Bounded Field",
+        "Type": "Field",
+        "Body": "Set up a bounded field, causing your enemy to be unable to use survey cards against you. Expires in Break phase.",
+        "Cost": {
+            "tp": 1,
+            "mp": 0,
+            "ec": 0,
+            "cs": 0
+        },
+        "EffectsStringList": [
+            "blockEnemySurvey","cardExpiresInBreak"
+        ]
+    },
+    {
+        "Visible": false,
+        "Name": "Bird Familiar",
+        "Type" : "Survey",
+        "Body": "Send a familiar to scout out your opponent. Add 1 Exposure Counter. Reveal one Break card on the field.",
+        "Cost": {
+            "tp": 1,
+            "mp": 0,
+            "ec": 1,
+            "cs": 0
+        },
+        "EffectsStringList": [
+            "revealEnemyCards"
+        ]
+    },
+    {
+        "Visible" : false,
+        "Name": "Bounded Field",
+        "Type": "Field",
+        "Body": "Set up a bounded field, causing your enemy to be unable to use survey cards against you. Expires in Break phase.",
+        "Cost": {
+            "tp": 1,
+            "mp": 0,
+            "ec": 0,
+            "cs": 0
+        },
+        "EffectsStringList": [
+            "blockEnemySurvey","cardExpiresInBreak"
+        ]
+    },
+    {
+        "Visible": false,
+        "Name": "Bird Familiar",
+        "Type" : "Survey",
+        "Body": "Send a familiar to scout out your opponent. Add 1 Exposure Counter. Reveal one Break card on the field.",
+        "Cost": {
+            "tp": 1,
+            "mp": 0,
+            "ec": 1,
+            "cs": 0
+        },
+        "EffectsStringList": [
             "revealEnemyCards"
         ]
     }

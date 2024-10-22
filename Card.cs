@@ -9,13 +9,24 @@ namespace Game {
         public string Type {get; set;}
         public string Body {get; set;}
         public Dictionary<string, int> Cost {get; set;} = new();
-        //We have a list to hold the strings on the card and a list to hold the actual effects since we're bringing in from JSON.
-        public string[] EffectsList {get; set;}
-
+        //We actually need two effects lists.
+        //One of them holds the strings to tell the card what effects it has (from JSON)
+        //The other holds the actual effect objects and is populated inside the card.
+        public string[] EffectsStringList {get; set;}
+        private List<IEffect> EffectsList = new();
+        //A method to search through all effects in the card's parameters
+        //and append the necessary method to act
         public void TagEffectsToCard() {
-            foreach (string effect in EffectsList) {
+            if (EffectsStringList == null) {
+                Console.WriteLine("EffectsStringList is null. Cannot tag effects.");
+                return;
+            }
+            foreach (string effect in EffectsStringList) {
                 switch (effect) {
-                    case "blockEnemySurvey": EffectsList.Append(new ChangeEnemyAttribute("canSurvey", false)); break;
+                    case "blockEnemySurvey": 
+                        EffectsList.Add(new ChangeEnemyAttribute("canSurvey", false));
+                        Console.WriteLine(EffectsList);
+                        break;
                     case "cardExpiresInBreak": Console.WriteLine(" | Set to Expire"); break;
                     case "revealEnemyCards": Console.WriteLine(" | Cards Revealed"); break;
                 }

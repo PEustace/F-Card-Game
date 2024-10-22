@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FateCards
-build_property.ProjectDir = C:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\
+build_property.ProjectDir = c:\Users\Phill\Documents\W_Dev\C#\FateCards\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
