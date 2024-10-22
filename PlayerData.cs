@@ -25,14 +25,23 @@ namespace Game {
             cs = csVal;
             name = nameVal;
         }
+
+        private void InitFlags() {
+            flags.Add("canSurvey", true);
+        }
         //PUBLIC
         //
         //
         //
         public PlayerData(int tacticPoints, int manaPoints, int exposureCounters, int commandCounters, string playerName) {
             PlayerInit(tacticPoints, manaPoints, exposureCounters, commandCounters, playerName);
+
+            InitFlags();
         }
 
+        public void ChangeFlag(string flagName, bool newFlagValue) {
+            flags[flagName] = newFlagValue;
+        }
         public void IncreaseValue(int change, string attribute) {
             switch (attribute) {
                 case "tp": tp += change; break;

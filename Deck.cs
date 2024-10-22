@@ -8,7 +8,7 @@ namespace Game {
         //
         //
         //
-        List<Card> deck;
+          List<Card> deck;
         
         
         private void CreateDeck() {
@@ -17,7 +17,7 @@ namespace Game {
             string jsonData = File.ReadAllText(filePath);
 
             // Deserialize the JSON string into a list of Card objects
-            Deck deck = JsonSerializer.Deserialize<Deck>(jsonData);
+            deck = JsonSerializer.Deserialize<List<Card>>(jsonData);
         }
         //PUBLIC
         //
@@ -34,6 +34,7 @@ namespace Game {
                 else {
                     Console.WriteLine("Ill.");
                 }
+                card.TagEffectsToCard();
             }
         }
     }
