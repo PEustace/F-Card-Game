@@ -10,9 +10,9 @@ namespace Game {
         //
         //
         //
-        
+        private List<IEffect> EffectsList = new();
         //Initialize players
-        private Dictionary<string, PlayerData> playerList = new();
+        public Dictionary<string, PlayerData> playerList = new();
 
         private void InitPlayerList() {
             PlayerData player1 = new PlayerData(defaultTP, defaultMP, defaultEC, defaultCS, "Player 1");
@@ -32,8 +32,18 @@ namespace Game {
         public const int defaultEC = 0;
         public const int defaultCS = 0;
         public const int defaultDrawCount = 5;
+        public static Dictionary<string, bool> defaultPlayerFlags = new Dictionary<string, bool>() {
+            {"canSurvey", false}
+        };
+        public static Dictionary<string, bool> defaultCardFlags = new Dictionary<string, bool>() {
+            {"expiresInBreak", false},
+            {"cardRevealed", false}
+        };
         public Gamemaster() {
             InitPlayerList();
+            Console.WriteLine("Deck created.");
+            playerList["Player 1"].GetHand().TestDeck();
+            Console.WriteLine("Tested deck successfully.");
         }
         public PlayerData GetPlayerObject(string playerName) {
             return playerList[playerName];
@@ -49,12 +59,7 @@ namespace Game {
         }
 
         public static void Main() {
-            Deck deck = new Deck();
-            Console.WriteLine("Deck created.");
-            //deck.TestDeck();
-            Console.WriteLine("Tested deck successfully.");
-            
-
+            Gamemaster gamemaster = new();
         }
     }
 }

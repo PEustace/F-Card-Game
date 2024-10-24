@@ -8,9 +8,9 @@ namespace Game {
         //
         //
         //
-        List<Card> deck;
-        private Card dummyCard;
         
+        private Card dummyCard;
+        private List<Card> deck;
         private void CreateDeck() {
             string filePath = "./cardlist.json";
             // Read the JSON data from the file
@@ -29,6 +29,7 @@ namespace Game {
         //
         //
         //
+        
         public Deck() {
             CreateDeck();
             foreach(Card card in deck) {

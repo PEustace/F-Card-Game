@@ -1,14 +1,11 @@
 namespace Game {
     public class Card {
-        //PRIVATE
-        //
-        //
-        //
         public bool Visible {get; set;}
         public string Name {get; set;}
         public string Type {get; set;}
         public string Body {get; set;}
         public Dictionary<string, int> Cost {get; set;} = new();
+        Dictionary<string, bool> flags = new();
         //We actually need two effects lists.
         //One of them holds the strings to tell the card what effects it has (from JSON)
         //The other holds the actual effect objects and is populated inside the card.
@@ -23,10 +20,7 @@ namespace Game {
             }
             foreach (string effect in EffectsStringList) {
                 switch (effect) {
-                    case "blockEnemySurvey": 
-                        EffectsList.Add(new ChangeEnemyAttribute("canSurvey", false));
-                        Console.WriteLine(EffectsList);
-                        break;
+                    case "blockEnemySurvey": Console.WriteLine(" | Block Survey"); break;
                     case "cardExpiresInBreak": Console.WriteLine(" | Set to Expire"); break;
                     case "revealEnemyCards": Console.WriteLine(" | Cards Revealed"); break;
                 }
@@ -55,6 +49,8 @@ namespace Game {
         public void ChangeVisibility(bool visibility) {
             Visible = visibility;
         }
-        
+        public void ChangeFlag(string flagToChange, bool newFlagValue) {
+
+        }
     }
 }

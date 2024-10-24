@@ -14,9 +14,9 @@ namespace Game {
         int cs; //command counters/seals
 
         string name;
-
+        int playerNumber;
         //Private flags (i.e. if they can play survey or if they are still hidden)
-        Dictionary<string, bool> flags = new();
+        Dictionary<string, bool> flags;
 
         private void PlayerInit(int tpVal, int mpVal, int ecVal, int csVal, string nameVal) {
             tp = tpVal;
@@ -27,7 +27,7 @@ namespace Game {
         }
 
         private void InitFlags() {
-            flags.Add("canSurvey", true);
+            flags = Gamemaster.defaultPlayerFlags;
         }
         //PUBLIC
         //
@@ -60,6 +60,10 @@ namespace Game {
                 case "ec": ec -= change; break;
                 case "cs": cs -= change; break;
             }
+        }
+
+        public Hand GetHand() {
+            return hand;
         }
     }
 }

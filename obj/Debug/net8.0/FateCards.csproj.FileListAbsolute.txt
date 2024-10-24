@@ -31,3 +31,4 @@ c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\obj\Debug\ne
 c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\obj\Debug\net8.0\FateCards.genruntimeconfig.cache
 c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\obj\Debug\net8.0\ref\FateCards.dll
 c:\Users\Phill\Documents\W_Dev\C#\FateCards\bin\Debug\net8.0\dummycard.json
+c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\bin\Debug\net8.0\dummycard.json
