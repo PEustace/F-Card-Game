@@ -19,5 +19,8 @@ namespace Game {
                 //Console.WriteLine("My hand has: " + card.GetName());
             }
         }
+        public List<Card> GetContents() {
+            return handContents;
+        }
     }
 }

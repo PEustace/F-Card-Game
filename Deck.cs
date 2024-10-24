@@ -10,14 +10,14 @@ namespace Game {
         //
         
         private Card dummyCard;
-        private List<Card> deck;
+        private List<Card> contents;
         private void CreateDeck() {
             string filePath = "./cardlist.json";
             // Read the JSON data from the file
             string jsonData = File.ReadAllText(filePath);
 
             // Deserialize the JSON string into a list of Card objects
-            deck = JsonSerializer.Deserialize<List<Card>>(jsonData);
+            contents = JsonSerializer.Deserialize<List<Card>>(jsonData);
 
             //Create a "Burnout" card that acts as a dummy card in case
             //there are errors with the deck.
@@ -25,16 +25,28 @@ namespace Game {
             jsonData = File.ReadAllText(filePath);
             dummyCard = JsonSerializer.Deserialize<Card>(jsonData);
         }
+        //Merges existing effect objects to cards based on the flags the card contains.
+        private void MergeCardsEffectToCard() {
+            foreach (Card card in contents) {
+                foreach (string effectString in card.EffectsStrings) {
+                    switch (effectString) {
+                        case "blockEnemySurvey": card.Effects.Add(new ChangeFlag("canSurvey", false)); break;
+                        case "cardExpiresInBreak": card.Effects.Add(new ChangeFlag("expiresInBreak", true)); break;
+                        case "revealEnemyCards": card.Effects.Add(new ChangeFlag("cardsRevealed", true)); break;
+                    }
+                }
+            }
+        }
         //PUBLIC
         //
         //
         //
-        
         public Deck() {
             CreateDeck();
-            foreach(Card card in deck) {
+            MergeCardsEffectToCard();
+            foreach(Card card in contents) {
                 if (card.GetName().Length > 0) {
-                    card.TagEffectsToCard();
+                    
                 }
                 else {
                     Console.WriteLine("Ill.");
@@ -42,10 +54,9 @@ namespace Game {
             }
         }
         public void TestDeck() {
-            foreach(Card card in deck) {
+            foreach(Card card in contents) {
                 if (card.GetName().Length > 0) {
                     Console.WriteLine(card.GetName());
-                    card.TagEffectsToCard();
                 }
                 else {
                     Console.WriteLine("Ill.");
@@ -56,14 +67,13 @@ namespace Game {
             List<Card> movingCards = new();
             for (int i = 0; i < countToPull; i++) {
                 try {
-                    movingCards.Add(deck[i]);
-                    movingCards.Remove(deck[i]);
+                    movingCards.Add(contents[i]);
+                    movingCards.Remove(contents[i]);
                 }
                 catch {
                     movingCards.Add(dummyCard);
                     break;
                 }
-                i++;
             }
             return movingCards;
         }

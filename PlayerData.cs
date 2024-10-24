@@ -65,5 +65,8 @@ namespace Game {
         public Hand GetHand() {
             return hand;
         }
+        public Dictionary<string, bool> GetFlags() {
+            return flags;
+        }
     }
 }

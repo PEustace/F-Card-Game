@@ -44,6 +44,9 @@ namespace Game {
             Console.WriteLine("Deck created.");
             playerList["Player 1"].GetHand().TestDeck();
             Console.WriteLine("Tested deck successfully.");
+
+            //Begin the game proper
+            Gameplay();
         }
         public PlayerData GetPlayerObject(string playerName) {
             return playerList[playerName];
@@ -60,6 +63,27 @@ namespace Game {
 
         public static void Main() {
             Gamemaster gamemaster = new();
+        }
+        public void TurnHandle(PlayerData activePlayer) {
+            foreach (string flag in activePlayer.GetFlags().Keys) {
+                CheckTurnFlag(flag, activePlayer);
+                foreach(Card card in activePlayer.GetHand().GetContents()) {
+                    foreach (IEffect effect in card.Effects) {
+                        Console.WriteLine("Active Card Flags: " + effect.GetName());
+                    }
+                }
+            }
+        }
+        public void CheckTurnFlag(string flag, PlayerData activePlayer) {
+            
+        }
+        public void Gameplay() {
+            PlayerData player1 = playerList["Player 1"];
+            PlayerData player2 = playerList["Player 2"];
+            while (true) {
+                TurnHandle(playerList["Player 1"]);
+                TurnHandle(playerList["Player 2"]);
+            }
         }
     }
 }
