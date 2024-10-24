@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FateCards")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e428647e6a9e1c4ebb44e3c38076a56279f614ce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c2896f5f2de140567a98b905e95cf3a20181622")]
 [assembly: System.Reflection.AssemblyProductAttribute("FateCards")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FateCards")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

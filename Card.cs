@@ -7,7 +7,7 @@ namespace Game {
         public Dictionary<string, int> Cost {get; set;} = new();
         public Dictionary<string, bool> flags {get; set;} = new();
         public List<string> EffectsStrings {get; set;} = new();
-        public List<IEffect> Effects = new();
+        public List<IEffect> Effects = [];
     
         //PUBLIC
         //

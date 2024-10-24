@@ -28,13 +28,21 @@ namespace Game {
         //Merges existing effect objects to cards based on the flags the card contains.
         private void MergeCardsEffectToCard() {
             foreach (Card card in contents) {
-                foreach (string effectString in card.EffectsStrings) {
-                    switch (effectString) {
-                        case "blockEnemySurvey": card.Effects.Add(new ChangeFlag("canSurvey", false)); break;
-                        case "cardExpiresInBreak": card.Effects.Add(new ChangeFlag("expiresInBreak", true)); break;
-                        case "revealEnemyCards": card.Effects.Add(new ChangeFlag("cardsRevealed", true)); break;
+                //Try because a card may not have an effect string.
+                try {
+                    foreach (string effectString in card.EffectsStrings) {
+                    Console.WriteLine("Found effect strings.");
+                        switch (effectString) {
+                            case "blockEnemySurvey": card.Effects.Add(new ChangeFlag("canSurvey", false)); break;
+                            case "cardExpiresInBreak": card.Effects.Add(new ChangeFlag("expiresInBreak", true)); break;
+                            case "revealEnemyCards": card.Effects.Add(new ChangeFlag("cardsRevealed", true)); break;
+                        }
                     }
                 }
+                catch {
+                    Console.WriteLine("Error: Card has no effects.");
+                }
+                
             }
         }
         //PUBLIC
@@ -44,14 +52,6 @@ namespace Game {
         public Deck() {
             CreateDeck();
             MergeCardsEffectToCard();
-            foreach(Card card in contents) {
-                if (card.GetName().Length > 0) {
-                    
-                }
-                else {
-                    Console.WriteLine("Ill.");
-                }
-            }
         }
         public void TestDeck() {
             foreach(Card card in contents) {
@@ -65,10 +65,11 @@ namespace Game {
         }
         public List<Card> DrawCards(int countToPull) {
             List<Card> movingCards = new();
-            for (int i = 0; i < countToPull; i++) {
+            for (int i = 0; i <= countToPull; i++) {
+                Console.WriteLine("Adding card to hand.");
                 try {
                     movingCards.Add(contents[i]);
-                    movingCards.Remove(contents[i]);
+                    contents.Remove(contents[i]);
                 }
                 catch {
                     movingCards.Add(dummyCard);

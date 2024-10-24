@@ -66,9 +66,12 @@ namespace Game {
         }
         public void TurnHandle(PlayerData activePlayer) {
             foreach (string flag in activePlayer.GetFlags().Keys) {
+                Console.WriteLine("Flags found.");
                 CheckTurnFlag(flag, activePlayer);
                 foreach(Card card in activePlayer.GetHand().GetContents()) {
+                    Console.WriteLine("Card found.");
                     foreach (IEffect effect in card.Effects) {
+                        Console.WriteLine("EFfect found.");
                         Console.WriteLine("Active Card Flags: " + effect.GetName());
                     }
                 }
@@ -80,10 +83,11 @@ namespace Game {
         public void Gameplay() {
             PlayerData player1 = playerList["Player 1"];
             PlayerData player2 = playerList["Player 2"];
-            while (true) {
+            Console.WriteLine("Begin Turns.");
+            //while (true) {
                 TurnHandle(playerList["Player 1"]);
                 TurnHandle(playerList["Player 2"]);
-            }
+            //}
         }
     }
 }
