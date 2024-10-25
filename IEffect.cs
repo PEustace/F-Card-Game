@@ -7,7 +7,7 @@ namespace Game {
         //
         //
         //
-        static string effectName;
+        public string effectName {get; set;}
         //PUBLIC
         //
         //
@@ -27,6 +27,7 @@ namespace Game {
     public class ChangeFlag : IEffect {
         string flag;
         bool value;
+        public string effectName {get; set;} = "ChangeFlag";
         public ChangeFlag(string flagToChange, bool newFlagValue) {
             flag = flagToChange;
             value = newFlagValue;

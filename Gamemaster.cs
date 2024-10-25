@@ -64,18 +64,29 @@ namespace Game {
         public static void Main() {
             Gamemaster gamemaster = new();
         }
-        public void TurnHandle(PlayerData activePlayer) {
+        public void CastPhase(PlayerData activePlayer) {
+            bool turnActive = true;
             foreach (string flag in activePlayer.GetFlags().Keys) {
+                List<Card> playerHand = activePlayer.GetHand().GetContents();
                 Console.WriteLine("Flags found.");
                 CheckTurnFlag(flag, activePlayer);
-                foreach(Card card in activePlayer.GetHand().GetContents()) {
-                    Console.WriteLine("Card found.");
-                    foreach (IEffect effect in card.Effects) {
-                        Console.WriteLine("EFfect found.");
-                        Console.WriteLine("Active Card Flags: " + effect.GetName());
+                Console.WriteLine("Cards: ");
+                for (int i = 0; i < playerHand.Count; i++) {
+                    Console.WriteLine(i + ": " + playerHand[i].GetName());
+                }
+                Console.Write("Play Card...: ");
+                while (turnActive == true) {
+                    try {
+                        int choice = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Card has taken the field: " + playerHand[choice].GetName());
+                        turnActive = false;
+                    }
+                    catch {
+                        Console.WriteLine("Invalid card number.");
                     }
                 }
             }
+            Console.WriteLine("End of turn. Starting next player turn.");
         }
         public void CheckTurnFlag(string flag, PlayerData activePlayer) {
             
@@ -85,8 +96,8 @@ namespace Game {
             PlayerData player2 = playerList["Player 2"];
             Console.WriteLine("Begin Turns.");
             //while (true) {
-                TurnHandle(playerList["Player 1"]);
-                TurnHandle(playerList["Player 2"]);
+                CastPhase(playerList["Player 1"]);
+                CastPhase(playerList["Player 2"]);
             //}
         }
     }

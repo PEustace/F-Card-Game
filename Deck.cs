@@ -65,7 +65,8 @@ namespace Game {
         }
         public List<Card> DrawCards(int countToPull) {
             List<Card> movingCards = new();
-            for (int i = 0; i <= countToPull; i++) {
+            //A variable to store the 
+            for (int i = 0; i < countToPull; i++) {
                 Console.WriteLine("Adding card to hand.");
                 try {
                     movingCards.Add(contents[i]);

@@ -6,7 +6,7 @@ namespace Game {
         //
         //
         //
-        List<Card> handContents = new();
+        List<Card> handContents = new List<Card>();
 
         //PUBLIC
         //
@@ -14,7 +14,10 @@ namespace Game {
         //
         public Hand() {
             handContents = DrawCards(Gamemaster.defaultDrawCount);
-            Console.WriteLine("Beginning Hand construction: " + handContents);
+            //foreach (Card card in handContents) {
+            //    Console.WriteLine("Beginning Hand construction: " + card.GetName());
+            //}
+            
             foreach (Card card in handContents) {
                 //Console.WriteLine("My hand has: " + card.GetName());
             }
