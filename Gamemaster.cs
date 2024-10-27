@@ -33,7 +33,7 @@ namespace Game {
         public const int defaultCS = 0;
         public const int defaultDrawCount = 5;
         public static Dictionary<string, bool> defaultPlayerFlags = new Dictionary<string, bool>() {
-            {"canSurvey", false}
+            {"canSurvey", true}
         };
         public static Dictionary<string, bool> defaultCardFlags = new Dictionary<string, bool>() {
             {"expiresInBreak", false},
@@ -66,19 +66,33 @@ namespace Game {
         }
         public void CastPhase(PlayerData activePlayer) {
             bool turnActive = true;
+            //The condition that the turn is good to go
+            bool turnOkay = true;
+            List<Card> playerHand = activePlayer.GetHand().GetContents();
             foreach (string flag in activePlayer.GetFlags().Keys) {
-                List<Card> playerHand = activePlayer.GetHand().GetContents();
                 Console.WriteLine("Flags found.");
                 CheckTurnFlag(flag, activePlayer);
+            }
+            if (turnOkay == true) {
+                Console.WriteLine("Turn Active: " + activePlayer.GetName() + ".");
                 Console.WriteLine("Cards: ");
                 for (int i = 0; i < playerHand.Count; i++) {
                     Console.WriteLine(i + ": " + playerHand[i].GetName());
                 }
                 Console.Write("Play Card...: ");
                 while (turnActive == true) {
+                    //Check for the card choice
                     try {
                         int choice = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Card has taken the field: " + playerHand[choice].GetName());
+                        Card cardChoice = playerHand[choice];
+                        Console.WriteLine("Card has taken the field: " + cardChoice.GetName());
+                        //Now we want to apply the effects of the card
+                        foreach (IEffect cardEffect in cardChoice.Effects) {
+                            Console.WriteLine("Applying Effect: " + cardEffect.GetName());
+                            if (cardEffect is ChangeFlag changeFlag) {
+                                changeFlag.Apply(activePlayer);
+                            }
+                        }
                         turnActive = false;
                     }
                     catch {

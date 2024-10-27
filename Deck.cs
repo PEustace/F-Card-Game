@@ -64,9 +64,10 @@ namespace Game {
             }
         }
         public List<Card> DrawCards(int countToPull) {
+            //The cards moving to the hand
             List<Card> movingCards = new();
-            //A variable to store the 
-            for (int i = 0; i < countToPull; i++) {
+            //Iterate backwards because we are removing cards from the deck, shifting it each time, leading to a headache
+            for (int i = countToPull - 1; i >= 0; i--) {
                 Console.WriteLine("Adding card to hand.");
                 try {
                     movingCards.Add(contents[i]);
@@ -74,7 +75,6 @@ namespace Game {
                 }
                 catch {
                     movingCards.Add(dummyCard);
-                    break;
                 }
             }
             return movingCards;
