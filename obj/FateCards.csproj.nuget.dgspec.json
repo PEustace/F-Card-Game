@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\FateCards.csproj": {}
   },
   "projects": {
@@ -12,6 +13,19 @@
         "projectPath": "c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\FateCards.csproj",
         "packagesPath": "C:\\Users\\Phill\\.nuget\\packages\\",
         "outputPath": "c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\obj\\",
+=======
+    "C:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj",
+        "projectName": "FateCards",
+        "projectPath": "C:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj",
+        "packagesPath": "C:\\Users\\Phill\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\obj\\",
+>>>>>>> 603fc2b7ef69a0144321a21c3896df4850805ba1
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Phill\\AppData\\Roaming\\NuGet\\NuGet.Config",
