@@ -11,47 +11,42 @@ namespace Game {
         
         private Card dummyCard;
         private List<Card> contents;
-        private void CreateDeck() {
+        private List<Card> CreateDeck() {
             string filePath = "./cardlist.json";
             // Read the JSON data from the file
-            string jsonData = File.ReadAllText(filePath);
+            string json = File.ReadAllText(filePath);
 
-            // Deserialize the JSON string into a list of Card objects
-            contents = JsonSerializer.Deserialize<List<Card>>(jsonData);
+            var options = new JsonSerializerOptions{
+                Converters = { new EffectConverter() },
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            };
+
+            var cards = JsonSerializer.Deserialize<List<Card>>(json, options);
+
+            foreach (Card card in cards){ 
+                Console.WriteLine("Card Name: " + card.GetName());
+                foreach (var effect in card.Effects) {
+                    Console.WriteLine("Effect: " + effect.GetName());
+                }
+            }
 
             //Create a "Burnout" card that acts as a dummy card in case
             //there are errors with the deck.
             filePath = "./dummycard.json";
-            jsonData = File.ReadAllText(filePath);
-            dummyCard = JsonSerializer.Deserialize<Card>(jsonData);
-        }
-        //Merges existing effect objects to cards based on the flags the card contains.
-        private void MergeCardsEffectToCard() {
-            foreach (Card card in contents) {
-                //Try because a card may not have an effect string.
-                try {
-                    foreach (string effectString in card.EffectsStrings) {
-                    Console.WriteLine("Found effect strings.");
-                        switch (effectString) {
-                            case "blockEnemySurvey": card.Effects.Add(new ChangeFlag("canSurvey", false)); break;
-                            case "cardExpiresInBreak": card.Effects.Add(new ChangeFlag("expiresInBreak", true)); break;
-                            case "revealEnemyCards": card.Effects.Add(new ChangeFlag("cardsRevealed", true)); break;
-                        }
-                    }
-                }
-                catch {
-                    Console.WriteLine("Error: Card has no effects.");
-                }
-                
-            }
+            string dummyContents = File.ReadAllText(filePath);
+            dummyCard = JsonSerializer.Deserialize<Card>(dummyContents);
+
+            return cards;
+
+            
         }
         //PUBLIC
         //
         //
         //
         public Deck() {
-            CreateDeck();
-            MergeCardsEffectToCard();
+            contents = CreateDeck();
         }
         public void TestDeck() {
             foreach(Card card in contents) {

@@ -10,9 +10,8 @@
             "ec": 0,
             "cs": 0
         },
-        "EffectsStrings": [
-            "blockEnemySurvey","cardExpiresInBreak"
-        ]
+        "Effects": 
+            {"ChangePlayerValue": {"canSurvey": false}, "ChangeCardValue": {"cardExpires": true}}
     },
     {
         "Visible": false,
@@ -25,8 +24,23 @@
             "ec": 1,
             "cs": 0
         },
-        "EffectsStrings": [
-            "revealEnemyCards"
+        "Effects": [
+            {"ChangeCardValue": {"cardsRevealed": true}}
+        ]
+    },
+    {
+        "Visible": true,
+        "Name": "Black Keys",
+        "Type" : "Damage",
+        "Body": "Apply 1 Damage to All Heretical faction cards on the field.",
+        "Cost": {
+            "tp": 2,
+            "mp": 0,
+            "ec": 1,
+            "cs": 0
+        },
+        "Effects": [
+            {"ApplyDamage": {"damageCount": "1", "applyToType": "heretical"}}
         ]
     }
 ]

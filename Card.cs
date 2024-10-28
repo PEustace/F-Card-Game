@@ -4,10 +4,9 @@ namespace Game {
         public string Name {get; set;}
         public string Type {get; set;}
         public string Body {get; set;}
-        public Dictionary<string, int> Cost {get; set;} = new();
-        public Dictionary<string, bool> flags {get; set;} = new();
-        public List<string> EffectsStrings {get; set;} = new();
-        public List<IEffect> Effects = [];
+        public Dictionary<string, int> Cost {get; set;}
+        public Dictionary<string, bool> flags = new();
+        public List<IEffect> Effects {get; set;}
     
         //PUBLIC
         //
