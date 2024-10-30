@@ -10,8 +10,9 @@
             "ec": 0,
             "cs": 0
         },
-        "Effects": 
-            {"ChangePlayerValue": {"canSurvey": false}, "ChangeCardValue": {"cardExpires": true}}
+        "Effects": [
+            {"ChangePlayerValue": {"newPlayerValue": {"canSurvey": false}}}, {"ChangeCardValue": {"newCardValue": {"cardExpires": true}}}
+        ]
     },
     {
         "Visible": false,

@@ -89,9 +89,7 @@ namespace Game {
                         //Now we want to apply the effects of the card
                         foreach (IEffect cardEffect in cardChoice.Effects) {
                             Console.WriteLine("Applying Effect: " + cardEffect.GetName());
-                            if (cardEffect is ChangeFlag changeFlag) {
-                                changeFlag.Apply(activePlayer);
-                            }
+                            
                         }
                         turnActive = false;
                     }

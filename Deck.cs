@@ -17,7 +17,7 @@ namespace Game {
             string json = File.ReadAllText(filePath);
 
             var options = new JsonSerializerOptions{
-                Converters = { new EffectConverter() },
+                Converters = { new CardConverter() },
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true
             };

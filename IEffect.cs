@@ -18,41 +18,6 @@ namespace Game {
             return name;
         }
     }
-    //A converter to handle our card effect solution
-    public class EffectConverter : JsonConverter<IEffect>
-    {
-        public override IEffect Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-        {
-            using (JsonDocument doc = JsonDocument.ParseValue(ref reader))
-            {
-                var rootElement = doc.RootElement;
-
-                if (rootElement.TryGetProperty("ChangePlayerValue", out _))
-                {
-                    return JsonSerializer.Deserialize<ChangePlayerValue>(rootElement.GetRawText(), options);
-                }
-
-                if (rootElement.TryGetProperty("ChangeCardValue", out _))
-                {
-                    return JsonSerializer.Deserialize<ChangeCardValue>(rootElement.GetRawText(), options);
-                }
-
-                if (rootElement.TryGetProperty("ApplyDamage", out _))
-                {
-                    return JsonSerializer.Deserialize<ApplyDamage>(rootElement.GetRawText(), options);
-                }
-
-                Console.WriteLine("The card was not created due to unknown effect type.");
-                throw new JsonException("Unknown effect type");
-            }
-        }
-
-    public override void Write(Utf8JsonWriter writer, IEffect value, JsonSerializerOptions options)
-    {
-        // Implement if you need serialization back to JSON
-        throw new NotImplementedException();
-    }
-}
 
     //Card games in OOP are tricky.
     //We need functions to handle different groups of things.
