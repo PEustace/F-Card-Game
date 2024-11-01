@@ -27,7 +27,7 @@ namespace Game {
             foreach (Card card in cards){ 
                 Console.WriteLine("Card Name: " + card.GetName());
                 foreach (var effect in card.Effects) {
-                    Console.WriteLine("Effect: " + effect.GetName());
+                    Console.WriteLine("Effect: " + effect.Name);
                 }
             }
 

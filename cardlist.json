@@ -11,7 +11,7 @@
             "cs": 0
         },
         "Effects": [
-            {"ChangePlayerValue": {"newPlayerValue": {"canSurvey": false}}}, {"ChangeCardValue": {"newCardValue": {"cardExpires": true}}}
+            {"ChangePlayerValue": {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, {"ChangeCardValue": {"newCardValue": {"cardExpires": true}, "which": "player"}}
         ]
     },
     {
@@ -26,7 +26,7 @@
             "cs": 0
         },
         "Effects": [
-            {"ChangeCardValue": {"cardsRevealed": true}}
+            {"ChangeCardValue": {"cardsRevealed": true, "which": "enemy"}}
         ]
     },
     {
@@ -41,7 +41,7 @@
             "cs": 0
         },
         "Effects": [
-            {"ApplyDamage": {"damageCount": "1", "applyToType": "heretical"}}
+            {"ApplyDamage": {"damageCount": "1", "applyToType": "heretical", "which": "enemy"}}
         ]
     }
 ]

@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -8,14 +9,22 @@ namespace Game {
         //
         //
         //
-        private static string name;
+        
         //PUBLIC
         //
         //
         //
-        public void Apply();
-        public string GetName() {
-            return name;
+        public string Name {get; set;}
+        public string which {get; set;}
+        public string effectMessage {get; set;}
+        public virtual List<string> Apply() {
+            return ["Does not apply"];
+        }
+        public virtual List<string> Apply(PlayerData player, PlayerData enemy) {
+            return ["Does not apply to players."];
+        }
+        public virtual string GetWhich() {
+            return which;
         }
     }
 
@@ -25,23 +34,48 @@ namespace Game {
     //Solution is to have effects run by checking a list of effect names on the cards.
     //Subject to change.
     public class ChangePlayerValue : IEffect {
-        string name = "Change Player Value";
+        public string Name {get; set;} = "Change Player Value";
         public Dictionary<string, bool> newPlayerValue {get; set;} = new();
-        public void Apply() {
-
+        public string which { get; set; } = "Default Value.";
+        public string effectMessage {get; set;}
+        //Strings that provide context to the players about what happened
+        public List<string> returnStrings = new();
+        public string Apply() {
+           return "Apply ran, but it did not apply any effect.";
+        }
+        public List<string> Apply(PlayerData player, PlayerData enemy) {
+            switch (which) {
+                case "player":
+                    foreach (string valueName in newPlayerValue.Keys) {
+                        player.ChangeFlag(valueName, newPlayerValue[valueName]);
+                        returnStrings.Add("Player '" + player.GetName() + "' is now " + effectMessage);
+                    }
+                    break;
+                case "enemy":
+                    foreach (string valueName in newPlayerValue.Keys) {
+                        enemy.ChangeFlag(valueName, newPlayerValue[valueName]);
+                        returnStrings.Add("Player '" + enemy.GetName() + "' is now " + effectMessage);
+                    }
+                    break;
+            }
+            return returnStrings;
         }
     }
     public class ChangeCardValue : IEffect {
-        string name = "Change Card Value";
+        public string effectMessage {get; set;}
+        public string Name {get; set;} = "Change Card Value";
         public Dictionary<string, bool> newCardValue {get; set;} = new();
+        public string which { get; set; }
         public void Apply() {
 
         }
     }
     public class ApplyDamage : IEffect {
-        string name = "Apply Damage";
+        public string effectMessage {get; set;}
+        public string Name {get; set;} = "Apply Damage";
         public string damageCount {get; set;}
         public string applyToType {get; set;}
+        public string which {get; set;}
         public void Apply() {
 
         }

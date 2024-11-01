@@ -64,7 +64,7 @@ namespace Game {
         public static void Main() {
             Gamemaster gamemaster = new();
         }
-        public void CastPhase(PlayerData activePlayer) {
+        public void CastPhase(PlayerData activePlayer, PlayerData enemyPlayer) {
             bool turnActive = true;
             //The condition that the turn is good to go
             bool turnOkay = true;
@@ -88,8 +88,15 @@ namespace Game {
                         Console.WriteLine("Card has taken the field: " + cardChoice.GetName());
                         //Now we want to apply the effects of the card
                         foreach (IEffect cardEffect in cardChoice.Effects) {
-                            Console.WriteLine("Applying Effect: " + cardEffect.GetName());
-                            
+                            Console.WriteLine("It's a: " + cardEffect.GetWhich());
+                            if (cardEffect.GetWhich() == "player" || cardEffect.GetWhich() == "enemy") {
+                                List<string> messagesStrings = cardEffect.Apply(activePlayer, enemyPlayer);
+
+                                foreach(string message in messagesStrings) {
+                                    Console.WriteLine(message);
+                                }
+                            }
+                            Console.WriteLine("Applying Effect: " + cardEffect.Name);
                         }
                         turnActive = false;
                     }
@@ -108,8 +115,8 @@ namespace Game {
             PlayerData player2 = playerList["Player 2"];
             Console.WriteLine("Begin Turns.");
             //while (true) {
-                CastPhase(playerList["Player 1"]);
-                CastPhase(playerList["Player 2"]);
+                CastPhase(player1, player2);
+                CastPhase(player2, player1);
             //}
         }
     }
