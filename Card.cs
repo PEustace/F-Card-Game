@@ -4,6 +4,8 @@ namespace Game {
         public string Name {get; set;}
         public string Type {get; set;}
         public string Body {get; set;}
+        public string Faction {get; set;} = "none";
+        public int Health {get; set;} = 1;
         public Dictionary<string, int> Cost {get; set;}
         public Dictionary<string, bool> flags = new();
         public List<IEffect> Effects {get; set;}
@@ -24,6 +26,10 @@ namespace Game {
         }
         public void ChangeFlag(string flagToChange, bool newFlagValue) {
 
+        }
+        public void TakeDamage(int damageCount) {
+            Console.WriteLine("Owie!");
+            Health -= damageCount;
         }
     }
 }

@@ -13,16 +13,18 @@ namespace Game {
         int ec; //exposure counters
         int cs; //command counters/seals
 
+        int hp;
         string name;
         int playerNumber;
         //Private flags (i.e. if they can play survey or if they are still hidden)
         Dictionary<string, bool> flags;
 
-        private void PlayerInit(int tpVal, int mpVal, int ecVal, int csVal, string nameVal) {
+        private void PlayerInit(int tpVal, int mpVal, int ecVal, int csVal, int hpVal, string nameVal) {
             tp = tpVal;
             mp = mpVal;
             ec = ecVal;
             cs = csVal;
+            hp = hpVal;
             name = nameVal;
         }
 
@@ -33,8 +35,8 @@ namespace Game {
         //
         //
         //
-        public PlayerData(int tacticPoints, int manaPoints, int exposureCounters, int commandCounters, string playerName) {
-            PlayerInit(tacticPoints, manaPoints, exposureCounters, commandCounters, playerName);
+        public PlayerData(int tacticPoints, int manaPoints, int exposureCounters, int commandCounters, int healthPoints, string playerName) {
+            PlayerInit(tacticPoints, manaPoints, exposureCounters, commandCounters, healthPoints, playerName);
 
             InitFlags();
         }
@@ -67,6 +69,9 @@ namespace Game {
         }
         public Dictionary<string, bool> GetFlags() {
             return flags;
+        }
+        public void TakeDamage(int damageCount) {
+            hp -= damageCount;
         }
     }
 }

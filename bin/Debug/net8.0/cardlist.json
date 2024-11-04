@@ -4,6 +4,8 @@
         "Name": "Bounded Field",
         "Type": "Field",
         "Body": "Set up a bounded field, causing your enemy to be unable to use survey cards against you. Expires in Break phase.",
+        "Faction": "Magecraft",
+        "Health": 1,
         "Cost": {
             "tp": 1,
             "mp": 0,
@@ -11,7 +13,10 @@
             "cs": 0
         },
         "Effects": [
-            {"ChangePlayerValue": {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, {"ChangeCardValue": {"newCardValue": {"cardExpires": true}, "which": "player"}}
+            {"ChangePlayerValue": 
+                {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, 
+            {"ChangeCardValue": 
+                {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
         ]
     },
     {
@@ -19,6 +24,8 @@
         "Name": "Bird Familiar",
         "Type" : "Survey",
         "Body": "Send a familiar to scout out your opponent. Add 1 Exposure Counter. Reveal one Break card on the field.",
+        "Faction": "Magecraft",
+        "Health": 1,
         "Cost": {
             "tp": 1,
             "mp": 0,
@@ -26,7 +33,8 @@
             "cs": 0
         },
         "Effects": [
-            {"ChangeCardValue": {"cardsRevealed": true, "which": "enemy"}}
+            {"ChangeCardValue": 
+                {"cardsRevealed": true, "which": "enemy", "effectMessage": "has had cards revealed."}}
         ]
     },
     {
@@ -34,6 +42,8 @@
         "Name": "Black Keys",
         "Type" : "Damage",
         "Body": "Apply 1 Damage to All Heretical faction cards on the field.",
+        "Faction": "Heretical",
+        "Health": 1,
         "Cost": {
             "tp": 2,
             "mp": 0,
@@ -41,7 +51,27 @@
             "cs": 0
         },
         "Effects": [
-            {"ApplyDamage": {"damageCount": "1", "applyToType": "heretical", "which": "enemy"}}
+            {"ApplyDamage": 
+                {"damageCount": 1, "applyToName": "Heretical", "which": "enemyCard", "applyCategory": "faction",
+                "effectMessage": "damage taken!"}}
+        ]
+    },
+    {
+        "Visible": true,
+        "Name": "Skeletal Familiar",
+        "Type" : "Familiar",
+        "Faction": "Magecraft",
+        "Body": "Rattling bones send chills down your spine. This card cannot attack.",
+        "Health": 2,
+        "Cost": {
+            "tp": 2,
+            "mp": 1,
+            "ec": 0,
+            "cs": 0
+        },
+        "Effects": [
+            
         ]
     }
+
 ]

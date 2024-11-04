@@ -17,7 +17,9 @@ namespace Game
                     Visible = root.GetProperty("Visible").GetBoolean(),
                     Name = root.GetProperty("Name").GetString(),
                     Type = root.GetProperty("Type").GetString(),
+                    Faction = root.GetProperty("Faction").GetString(),
                     Body = root.GetProperty("Body").GetString(),
+                    Health = root.GetProperty("Health").GetInt32(),
                     Cost = JsonSerializer.Deserialize<Dictionary<string, int>>(root.GetProperty("Cost").GetRawText(), options),
                     Effects = DeserializeEffects(root.GetProperty("Effects"), options)
                 };

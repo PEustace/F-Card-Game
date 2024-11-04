@@ -15,8 +15,8 @@ namespace Game {
         public Dictionary<string, PlayerData> playerList = new();
 
         private void InitPlayerList() {
-            PlayerData player1 = new PlayerData(defaultTP, defaultMP, defaultEC, defaultCS, "Player 1");
-            PlayerData player2 = new PlayerData(defaultTP, defaultMP, defaultEC, defaultCS, "Player 2");
+            PlayerData player1 = new PlayerData(defaultTP, defaultMP, defaultEC, defaultCS, defaultHP, "Player 1");
+            PlayerData player2 = new PlayerData(defaultTP, defaultMP, defaultEC, defaultCS, defaultHP, "Player 2");
 
             playerList.Add(player1.GetName(), player1);
             playerList.Add(player2.GetName(), player2);
@@ -31,6 +31,7 @@ namespace Game {
         public const int defaultMP = 5;
         public const int defaultEC = 0;
         public const int defaultCS = 0;
+        public const int defaultHP = 5;
         public const int defaultDrawCount = 5;
         public static Dictionary<string, bool> defaultPlayerFlags = new Dictionary<string, bool>() {
             {"canSurvey", true}
@@ -58,7 +59,7 @@ namespace Game {
                     return playerList[player];
                 }
             }
-            return new PlayerData(0, 0, 0, 0, "Error Dummy.");
+            return new PlayerData(0, 0, 0, 0, 0, "Error Dummy.");
         }
 
         public static void Main() {
@@ -86,17 +87,32 @@ namespace Game {
                         int choice = Convert.ToInt32(Console.ReadLine());
                         Card cardChoice = playerHand[choice];
                         Console.WriteLine("Card has taken the field: " + cardChoice.GetName());
+                        List<string> messagesStrings = new();
                         //Now we want to apply the effects of the card
                         foreach (IEffect cardEffect in cardChoice.Effects) {
-                            Console.WriteLine("It's a: " + cardEffect.GetWhich());
+                            Console.WriteLine("It's a(n): " + cardEffect.GetWhich());
                             if (cardEffect.GetWhich() == "player" || cardEffect.GetWhich() == "enemy") {
-                                List<string> messagesStrings = cardEffect.Apply(activePlayer, enemyPlayer);
+                                messagesStrings = cardEffect.Apply(activePlayer, enemyPlayer);
+                            }
+                            else if (cardEffect.GetWhich() == "playerCard" || cardEffect.GetWhich() == "enemyCard") {
+                                //Check the effect for what card(s) it wants
+                                //Then pass that into the effect apply
+                                object returnedType = cardEffect.GetCardNameOrFaction(activePlayer, enemyPlayer);
 
-                                foreach(string message in messagesStrings) {
-                                    Console.WriteLine(message);
+                                //C# doesn't like to play nice with this so we'll check the type first.
+                                if (returnedType is Card card) {
+                                    messagesStrings = cardEffect.Apply(card);
+                                }
+                                else if (returnedType is List<Card> cards) {
+                                    messagesStrings = cardEffect.Apply(cards);
                                 }
                             }
                             Console.WriteLine("Applying Effect: " + cardEffect.Name);
+                            
+                            //Writing out visual feedback for the player;
+                            foreach(string message in messagesStrings) {
+                                    Console.WriteLine(message);
+                            }
                         }
                         turnActive = false;
                     }
@@ -118,6 +134,7 @@ namespace Game {
                 CastPhase(player1, player2);
                 CastPhase(player2, player1);
             //}
+            Console.WriteLine("Game over.");
         }
     }
 }
