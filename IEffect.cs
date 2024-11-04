@@ -35,8 +35,17 @@ namespace Game {
         public virtual List<string> Apply(List<Card> cards) {
             return ["Found no list of cards to apply."];
         }
-        public List<string> Apply(PlayerData player) {
+        public virtual List<string> Apply(PlayerData player) {
             return ["Found no player to apply"];
+        }
+        public virtual string GetCategory() {
+            return null;
+        }
+        public virtual Card GetCardOfName(PlayerData activePlayer, PlayerData enemyPlayer) {
+            return null;
+        }
+        public virtual List<Card> GetCardsOfFaction(PlayerData activePlayer, PlayerData enemyPlayer) {
+            return null;
         }
     }
 
@@ -92,29 +101,11 @@ namespace Game {
         public string applyCategory {get; set;}
         public string which {get; set;}
         //It's necessary to understand whether the apply needs to apply to a card or a list of cards, or other.
-        public object GetDamageNameOrFaction<T>(PlayerData activePlayer, PlayerData enemyPlayer) {
+        public Card GetCardOfName(PlayerData activePlayer, PlayerData enemyPlayer) {
             List<Card> pullFromHand = new();
-            List<Card> filteredList = new();
-            //faction returns a list of cards matching that faction
-            if (applyCategory == "faction") {
-                if (which == "playerCard") {
-                    pullFromHand = activePlayer.GetHand().GetContents();
-                }
-                else if (which == "enemyCard") {
-                    pullFromHand = enemyPlayer.GetHand().GetContents();
-                }
 
-                foreach (Card card in pullFromHand) {
-                    //if it doesn't match the intended target, just cut it from the list
-                    if (card.Faction != applyToName) {
-                        filteredList.Add(card);
-                    }
-                }
-
-                return filteredList;
-            }
-            //name returns a singular card of that name
-            else if (applyCategory == "name") {
+             //name returns a singular card of that name
+            if (applyCategory == "name") {
                 if (which == "playerCard") {
                     pullFromHand = activePlayer.GetHand().GetContents();
                 }
@@ -128,7 +119,35 @@ namespace Game {
                     }
                 }
             }
-            else if (applyCategory == "player") {
+            //this shouldn't happen
+            Console.WriteLine("Goof in aisle GCNOF() on IEffect");
+            return null;
+        }
+        public List<Card> GetCardsOfFaction(PlayerData activePlayer, PlayerData enemyPlayer) {
+            List<Card> pullFromHand = new();
+            List<Card> filteredList = new();
+            //faction returns a list of cards matching that faction
+            if (applyCategory == "faction") {
+                if (which == "playerCard") {
+                    pullFromHand = activePlayer.GetHand().GetContents();
+                }
+                else if (which == "enemyCard") {
+                    pullFromHand = enemyPlayer.GetHand().GetContents();
+                }
+
+                foreach (Card card in pullFromHand) {
+                    //if it doesn't match the intended target, ignore
+                    if (card.Faction == applyToName) {
+                        filteredList.Add(card);
+                    }
+                }
+
+                return filteredList;
+            }
+            return null;
+        }
+        public PlayerData GetPlayerOfName(PlayerData activePlayer, PlayerData enemyPlayer) {
+            if (applyCategory == "player") {
                 PlayerData applyToPlayer;
                 if (which == "player") {
                     applyToPlayer = activePlayer;
@@ -141,8 +160,6 @@ namespace Game {
                 }
                 return applyToPlayer;
             }
-            //this shouldn't happen
-            Console.WriteLine("Goof in aisle GCNOF() on IEffect");
             return null;
         }
         public List<string> Apply(Card card) {
@@ -160,6 +177,9 @@ namespace Game {
         public List<string> Apply(PlayerData player) {
             player.TakeDamage(damageCount);
             return [player.GetName() + " has had " + damageCount.ToString() + " " + effectMessage];
+        }
+        public string GetCategory() {
+            return applyCategory;
         }
     }
 }

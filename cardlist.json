@@ -42,7 +42,7 @@
         "Name": "Black Keys",
         "Type" : "Damage",
         "Body": "Apply 1 Damage to All Heretical faction cards on the field.",
-        "Faction": "Heretical",
+        "Faction": "Church",
         "Health": 1,
         "Cost": {
             "tp": 2,
@@ -60,7 +60,7 @@
         "Visible": true,
         "Name": "Skeletal Familiar",
         "Type" : "Familiar",
-        "Faction": "Magecraft",
+        "Faction": "Heretical",
         "Body": "Rattling bones send chills down your spine. This card cannot attack.",
         "Health": 2,
         "Cost": {

@@ -97,14 +97,13 @@ namespace Game {
                             else if (cardEffect.GetWhich() == "playerCard" || cardEffect.GetWhich() == "enemyCard") {
                                 //Check the effect for what card(s) it wants
                                 //Then pass that into the effect apply
-                                object returnedType = cardEffect.GetCardNameOrFaction(activePlayer, enemyPlayer);
-
-                                //C# doesn't like to play nice with this so we'll check the type first.
-                                if (returnedType is Card card) {
-                                    messagesStrings = cardEffect.Apply(card);
-                                }
-                                else if (returnedType is List<Card> cards) {
-                                    messagesStrings = cardEffect.Apply(cards);
+                                if (cardEffect.GetCategory() == "name") {
+                                    Card returnedType = cardEffect.GetCardOfName(activePlayer, enemyPlayer);
+                                    messagesStrings = cardEffect.Apply(returnedType);
+                                } 
+                                else if (cardEffect.GetCategory() == "faction") {
+                                    List<Card> returnedType = cardEffect.GetCardsOfFaction(activePlayer, enemyPlayer);
+                                    messagesStrings = cardEffect.Apply(returnedType);
                                 }
                             }
                             Console.WriteLine("Applying Effect: " + cardEffect.Name);
