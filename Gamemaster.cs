@@ -24,7 +24,6 @@ namespace Game {
             playerList.Add(player2.GetName(), player2);
         }
         Phases ShouldPhaseEnd(Phases currentPhase) {
-            Phases phase;
 
             //Underneath we check all the conditions for both phases
             //Reference "Phases" in the rulebook for current phase conditions
@@ -37,7 +36,7 @@ namespace Game {
                         player.GetTP() <= 0,
                         player.GetHand().GetActiveServant() != null
                     ];
-                    if (endCastConditions.Any()) {
+                    if (endCastConditions.Any(condition => condition)) {
                         return Phases.Break;
                     }
                     else {
@@ -52,7 +51,7 @@ namespace Game {
                         player.GetHealth() <= 0
                     ];
 
-                    if (endBreakConditions.Any()) {
+                    if (endBreakConditions.Any(condition => condition)) {
                         return Phases.End;
                     }
                     else {
@@ -196,8 +195,7 @@ namespace Game {
             Phases currentPhase = defaultPhase;
 
             while (currentPhase == Phases.Cast || currentPhase == Phases.Break) {
-                //switch (ShouldPhaseEnd(currentPhase)) {
-                switch (currentPhase) {
+                switch (ShouldPhaseEnd(currentPhase)) {
                     case Phases.Cast: 
                         Console.WriteLine("Tension is in the air...");
                         currentPhase = Phases.Cast;
