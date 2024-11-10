@@ -73,5 +73,11 @@ namespace Game {
         public void TakeDamage(int damageCount) {
             hp -= damageCount;
         }
+        public int GetHealth() {
+            return hp;
+        }
+        public int GetTP() {
+            return tp;
+        }
     }
 }

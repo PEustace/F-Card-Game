@@ -11,6 +11,7 @@ namespace Game {
         
         private Card dummyCard;
         private List<Card> contents;
+        private List<Card> servants;
         private List<Card> CreateDeck() {
             string filePath = "./cardlist.json";
             // Read the JSON data from the file
@@ -41,12 +42,32 @@ namespace Game {
 
             
         }
+        private List<Card> CreateServantDeck() {
+            string filePath = "./servantlist.json";
+            // Read the JSON data from the file
+            string json = File.ReadAllText(filePath);
+
+            var options = new JsonSerializerOptions{
+                Converters = { new CardConverter() },
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                WriteIndented = true
+            };
+
+            var cards = JsonSerializer.Deserialize<List<Card>>(json, options);
+
+            foreach (Card card in cards){ 
+                Console.WriteLine("Servant Name: " + card.GetName());
+            }
+
+            return cards;
+        }
         //PUBLIC
         //
         //
         //
         public Deck() {
             contents = CreateDeck();
+            servants = CreateServantDeck();
         }
         public void TestDeck() {
             foreach(Card card in contents) {
@@ -67,6 +88,20 @@ namespace Game {
                 try {
                     movingCards.Add(contents[i]);
                     contents.Remove(contents[i]);
+                }
+                catch {
+                    movingCards.Add(dummyCard);
+                }
+            }
+            return movingCards;
+        }
+        public List<Card> DrawServants(int countToPull) {
+            List<Card> movingCards = new();
+            for (int i = countToPull - 1; i >= 0; i--) {
+                Console.WriteLine("Adding servant to servant hand");
+                try {
+                    movingCards.Add(servants[i]);
+                    contents.Remove(servants[i]);
                 }
                 catch {
                     movingCards.Add(dummyCard);

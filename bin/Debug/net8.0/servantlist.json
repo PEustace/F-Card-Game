@@ -1,0 +1,42 @@
+[
+    {
+        "Visible" : false,
+        "Name": "Artoria Pendragon",
+        "Type": "Saber",
+        "Body": "The legendary King Arthur, King of Knights. The King who unsheathed the sword from the stone.",
+        "Faction": "Servant",
+        "Health": 10,
+        "Cost": {
+            "tp": 0,
+            "mp": 0,
+            "ec": 0,
+            "cs": 0
+        },
+        "Effects": [
+            {"ChangePlayerValue": 
+                {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, 
+            {"ChangeCardValue": 
+                {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
+        ]
+    },
+    {
+        "Visible" : false,
+        "Name": "Cu Chulainn",
+        "Type": "Lancer",
+        "Body": "A legendary Irish warrior and demigod. Wields the Gae Bolg.",
+        "Faction": "Servant",
+        "Health": 10,
+        "Cost": {
+            "tp": 0,
+            "mp": 0,
+            "ec": 0,
+            "cs": 0
+        },
+        "Effects": [
+            {"ChangePlayerValue": 
+                {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, 
+            {"ChangeCardValue": 
+                {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
+        ]
+    }
+]

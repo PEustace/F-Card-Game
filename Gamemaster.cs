@@ -1,5 +1,6 @@
 //A script that holds the brain of the game serving both players.
 //It also holds an additional class for default values.
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
@@ -13,6 +14,7 @@ namespace Game {
         private List<IEffect> EffectsList = new();
         //Initialize players
         public Dictionary<string, PlayerData> playerList = new();
+        
 
         private void InitPlayerList() {
             PlayerData player1 = new PlayerData(defaultTP, defaultMP, defaultEC, defaultCS, defaultHP, "Player 1");
@@ -21,18 +23,69 @@ namespace Game {
             playerList.Add(player1.GetName(), player1);
             playerList.Add(player2.GetName(), player2);
         }
+        Phases ShouldPhaseEnd(Phases currentPhase) {
+            Phases phase;
+
+            //Underneath we check all the conditions for both phases
+            //Reference "Phases" in the rulebook for current phase conditions
+
+            //Check for each player with the endconditions based on phase
+            if (currentPhase == Phases.Cast) {
+                foreach (string playerKey in playerList.Keys) {
+                    PlayerData player = playerList[playerKey];
+                    bool[] endCastConditions = [
+                        player.GetTP() <= 0,
+                        player.GetHand().GetActiveServant() != null
+                    ];
+                    if (endCastConditions.Any()) {
+                        return Phases.Break;
+                    }
+                    else {
+                        return currentPhase;
+                    }
+                }
+            }
+            else if (currentPhase == Phases.Break) {
+                foreach (string playerKey in playerList.Keys) {
+                    PlayerData player = playerList[playerKey];
+                    bool[] endBreakConditions = [
+                        player.GetHealth() <= 0
+                    ];
+
+                    if (endBreakConditions.Any()) {
+                        return Phases.End;
+                    }
+                    else {
+                        return currentPhase;
+                    }
+                }
+            }
+            else {
+                Console.WriteLine("oopsie woopsie. this shouldn't happen.");
+                return Phases.End;
+            }
+            //somehow
+            return currentPhase;
+            
+
+            
+        }
         //PUBLIC
         //
         //
         //
         //
         //Game start values
+        //Set the initial phase, which is castphase
+        public enum Phases {Cast, Break, End}
         public const int defaultTP = 6;
         public const int defaultMP = 5;
         public const int defaultEC = 0;
         public const int defaultCS = 0;
         public const int defaultHP = 5;
-        public const int defaultDrawCount = 5;
+        public const int defaultDrawCount = 10;
+        public const int defaultServantCount = 5;
+        public const Phases defaultPhase = Phases.Cast;
         public static Dictionary<string, bool> defaultPlayerFlags = new Dictionary<string, bool>() {
             {"canSurvey", true}
         };
@@ -122,17 +175,49 @@ namespace Game {
             }
             Console.WriteLine("End of turn. Starting next player turn.");
         }
+        public void BreakPhase(PlayerData activePlayer, PlayerData enemyPlayer) {
+
+        }
         public void CheckTurnFlag(string flag, PlayerData activePlayer) {
             
+        }
+        public void PrepareBreak() {
+            foreach (string player in playerList.Keys) {
+                if (playerList[player].GetHand().GetActiveServant() == null) {
+                    playerList[player].GetHand().SetRandomServant();
+                }
+            }
         }
         public void Gameplay() {
             PlayerData player1 = playerList["Player 1"];
             PlayerData player2 = playerList["Player 2"];
             Console.WriteLine("Begin Turns.");
-            //while (true) {
-                CastPhase(player1, player2);
-                CastPhase(player2, player1);
-            //}
+
+            Phases currentPhase = defaultPhase;
+
+            while (currentPhase == Phases.Cast || currentPhase == Phases.Break) {
+                //switch (ShouldPhaseEnd(currentPhase)) {
+                switch (currentPhase) {
+                    case Phases.Cast: 
+                        Console.WriteLine("Tension is in the air...");
+                        currentPhase = Phases.Cast;
+                        while (currentPhase == Phases.Cast) {
+                            CastPhase(player1, player2);
+                            CastPhase(player2, player1); 
+                        }
+                    break;
+                   case Phases.Break: 
+                        Console.WriteLine("TENSION BROKEN");
+                        currentPhase = Phases.Break;
+                        PrepareBreak();
+                        while (currentPhase == Phases.Break) {
+                            BreakPhase(player1, player2);
+                            BreakPhase(player2, player1);
+                        }
+                        
+                    break;
+                }
+            }
             Console.WriteLine("Game over.");
         }
     }
