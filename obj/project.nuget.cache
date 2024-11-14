@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "STEMOH8exvQ=",
   "success": true,
   "projectFilePath": "C:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\FateCards.csproj",
+=======
+  "dgSpecHash": "RXg0N0Orqr4=",
+  "success": true,
+  "projectFilePath": "c:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj",
+>>>>>>> f92a1dfc7b2c5b78e510cc4a0504f4d42f118839
   "expectedPackageFiles": [],
   "logs": []
 }

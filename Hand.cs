@@ -7,6 +7,8 @@ namespace Game {
         //
         //
         List<Card> handContents = new List<Card>();
+        List<Card> servantContents = new List<Card>();
+        Card activeServant;
 
         //PUBLIC
         //
@@ -14,6 +16,7 @@ namespace Game {
         //
         public Hand() {
             handContents = DrawCards(Gamemaster.defaultDrawCount);
+            servantContents = DrawServants(Gamemaster.defaultServantCount);
             //foreach (Card card in handContents) {
             //    Console.WriteLine("Beginning Hand construction: " + card.GetName());
             //}
@@ -24,6 +27,20 @@ namespace Game {
         }
         public List<Card> GetContents() {
             return handContents;
+        }
+        public List<Card> GetServants() {
+            return servantContents;
+        }
+        public void SetRandomServant() {
+            Random rand = new Random();
+
+            int randInt = rand.Next(0, servantContents.Count);
+            Card chosenServant = servantContents[randInt];
+
+            activeServant = chosenServant;
+        }
+        public Card GetActiveServant() {
+            return activeServant;
         }
     }
 }
