@@ -12,6 +12,7 @@ namespace Game {
         public Dictionary<string, int> Cost {get; set;}
         public Dictionary<string, bool> flags = new();
         public List<IEffect> Effects {get; set;}
+        public bool OnField {get; set;} = false;
     
         //PUBLIC
         //

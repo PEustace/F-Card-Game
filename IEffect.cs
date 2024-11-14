@@ -163,14 +163,24 @@ namespace Game {
             return null;
         }
         public List<string> Apply(Card card) {
-            card.TakeDamage(damageCount);
-            return [card.Name + " has had " + damageCount.ToString() + " " + effectMessage];
+            if (card.OnField == true) {
+                card.TakeDamage(damageCount);
+                return [card.Name + " has had " + damageCount.ToString() + " " + effectMessage];
+            }
+            else {
+                return ["Found a matching card but unable to take damage due to being off-field"];
+            }
         }
         public List<string> Apply(List<Card> cards) {
             List<string> returnStrings = new();
             foreach (Card card in cards) {
-                card.TakeDamage(damageCount);
-                returnStrings.Add(card.Name + " has had " + damageCount.ToString() + " " + effectMessage);
+                if (card.OnField == true) {
+                    card.TakeDamage(damageCount);
+                    return [card.Name + " has had " + damageCount.ToString() + " " + effectMessage];
+                }
+                else {
+                    return ["Found a matching card but unable to take damage due to being off-field"];
+                }
             }
             return returnStrings;
         }

@@ -33,3 +33,4 @@ c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\obj\Debug\ne
 c:\Users\Phill\Documents\W_Dev\C#\FateCards\bin\Debug\net8.0\dummycard.json
 c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\bin\Debug\net8.0\dummycard.json
 c:\Users\Phill\OneDrive\Documents\WindowsDev\C#\FateCards\FateCards\bin\Debug\net8.0\servantlist.json
+c:\Users\Phill\Documents\W_Dev\C#\FateCards\bin\Debug\net8.0\servantlist.json

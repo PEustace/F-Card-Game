@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj",
+      "projectUniqueName": "c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\FateCards.csproj",
       "projectName": "FateCards",
-      "projectPath": "c:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\FateCards.csproj",
+      "projectPath": "c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\FateCards.csproj",
       "packagesPath": "C:\\Users\\Phill\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Phill\\OneDrive\\Documents\\WindowsDev\\C#\\FateCards\\FateCards\\obj\\",
+      "outputPath": "c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Phill\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -69,5 +69,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file c:\\Users\\Phill\\Documents\\W_Dev\\C#\\FateCards\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
