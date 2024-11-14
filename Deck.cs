@@ -11,7 +11,7 @@ namespace Game {
         
         private Card dummyCard;
         private List<Card> contents;
-        private List<Card> servants;
+        private List<Servant> servants;
         private List<Card> CreateDeck() {
             string filePath = "./cardlist.json";
             // Read the JSON data from the file
@@ -42,7 +42,7 @@ namespace Game {
 
             
         }
-        private List<Card> CreateServantDeck() {
+        private List<Servant> CreateServantDeck() {
             string filePath = "./servantlist.json";
             // Read the JSON data from the file
             string json = File.ReadAllText(filePath);
@@ -53,7 +53,7 @@ namespace Game {
                 WriteIndented = true
             };
 
-            var cards = JsonSerializer.Deserialize<List<Card>>(json, options);
+            var cards = JsonSerializer.Deserialize<List<Servant>>(json, options);
 
             foreach (Card card in cards){ 
                 Console.WriteLine("Servant Name: " + card.GetName());

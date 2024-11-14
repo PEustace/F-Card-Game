@@ -154,8 +154,23 @@ namespace Game {
 
             Console.WriteLine(activePlayer.GetHand().GetActiveServant().GetName());
 
-            
-            
+            Console.WriteLine("Which action would you like to take? \n 1: Servant Action \n 2: Play a Card.");
+            try {
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                if (choice == 0) {
+                    RequestServantAction(activePlayer, enemyPlayer);
+                }
+                else if (choice == 1) {
+                    RequestPlayCard(activePlayer, activePlayer.GetHand().GetContents(), enemyPlayer);
+                }
+                else {
+                    Console.WriteLine("Invalid choice.");
+                }
+            }
+            catch {
+                Console.WriteLine("Invalid choice.");
+            }
         }
         public void CheckTurnFlag(string flag, PlayerData activePlayer) {
             
@@ -166,6 +181,9 @@ namespace Game {
                     playerList[player].GetHand().SetRandomServant();
                 }
             }
+        }
+        public void RequestServantAction(PlayerData activePlayer, PlayerData enemyPlayer) {
+            int choiceAction = Convert.ToInt32(Console.ReadLine());
         }
         public void RequestPlayCard(PlayerData activePlayer, List<Card> playerHand, PlayerData enemyPlayer) {
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -214,7 +232,7 @@ namespace Game {
                 //another phase, but someone gets a second duplicate turn in the
                 //existing phase first.
 
-                //Check first player
+                //Check and play first player
                 switch (ShouldPhaseEnd(currentPhase)) {
                     case Phases.Cast: 
                         Console.WriteLine("Tension is in the air...");
@@ -227,7 +245,7 @@ namespace Game {
                         BreakPhase(player1, player2);
                     break;
                 }
-                //Check second player
+                //Check and play second player
                 switch (ShouldPhaseEnd(currentPhase)) {
                     case Phases.Cast: 
                         Console.WriteLine("Tension is in the air...");
@@ -238,7 +256,6 @@ namespace Game {
                         Console.WriteLine("TENSION BROKEN");
                         currentPhase = Phases.Break;
                         BreakPhase(player2, player1);
-                        
                     break;
                 }
             }

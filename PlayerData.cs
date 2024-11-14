@@ -79,5 +79,8 @@ namespace Game {
         public int GetTP() {
             return tp;
         }
+        public int GetMP() {
+            return mp;
+        }
     }
 }

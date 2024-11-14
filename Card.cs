@@ -1,3 +1,5 @@
+using System.Dynamic;
+
 namespace Game {
     public class Card {
         //Enum types of the card
@@ -42,6 +44,12 @@ namespace Game {
     }
     //Servants have a few extra rules to normal cards. See rulebook.
     public class Servant : Card {
+        public List<IEffect> ServantActions {get; set;}
 
+        public void ListActions() {
+            for (int i = 0; i <= ServantActions.Count; i++) {
+                Console.WriteLine("Action " + i + ": " + ServantActions[i].Name);
+            }
+        }
     }
 }
