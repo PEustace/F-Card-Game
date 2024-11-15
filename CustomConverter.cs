@@ -12,21 +12,60 @@ namespace Game
             using (var jsonDoc = JsonDocument.ParseValue(ref reader))
             {
                 var root = jsonDoc.RootElement;
-                var card = new Card
-                {
-                    Visible = root.GetProperty("Visible").GetBoolean(),
-                    Name = root.GetProperty("Name").GetString(),
-                    Type = root.GetProperty("Type").GetString(),
-                    Faction = root.GetProperty("Faction").GetString(),
-                    Body = root.GetProperty("Body").GetString(),
-                    Health = root.GetProperty("Health").GetInt32(),
-                    Cost = JsonSerializer.Deserialize<Dictionary<string, int>>(root.GetProperty("Cost").GetRawText(), options),
-                    Effects = DeserializeEffects(root.GetProperty("Effects"), options)
-                };
-                return card;
+                Console.WriteLine("Faction: " + root.GetProperty("Faction"));
+                if (root.GetProperty("Faction").GetString() == "Servant") {
+                    var card = new Servant {
+                        Visible = root.GetProperty("Visible").GetBoolean(),
+                        Name = root.GetProperty("Name").GetString(),
+                        Type = root.GetProperty("Type").GetString(),
+                        Faction = root.GetProperty("Faction").GetString(),
+                        Body = root.GetProperty("Body").GetString(),
+                        Health = root.GetProperty("Health").GetInt32(),
+                        Cost = JsonSerializer.Deserialize<Dictionary<string, int>>(root.GetProperty("Cost").GetRawText(), options),
+                        Effects = DeserializeEffects(root.GetProperty("Effects"), options),
+                        ServantActions = DeserializeUniques(root.GetProperty("ServantActions"), options)
+                    };
+                    return card;
+                }
+                else {
+                    var card = new Card
+                    {
+                        Visible = root.GetProperty("Visible").GetBoolean(),
+                        Name = root.GetProperty("Name").GetString(),
+                        Type = root.GetProperty("Type").GetString(),
+                        Faction = root.GetProperty("Faction").GetString(),
+                        Body = root.GetProperty("Body").GetString(),
+                        Health = root.GetProperty("Health").GetInt32(),
+                        Cost = JsonSerializer.Deserialize<Dictionary<string, int>>(root.GetProperty("Cost").GetRawText(), options),
+                        Effects = DeserializeEffects(root.GetProperty("Effects"), options)
+                    };
+                    return card;
+                }
+                
+                
             }
         }
 
+        private List<IUnique> DeserializeUniques(JsonElement actionElement, JsonSerializerOptions options) {
+            var actions = new List<IUnique>();
+
+            foreach (var action in actionElement.EnumerateArray()) {
+                string actionName = action.GetString();
+
+                var actionType = Type.GetType(actionName, throwOnError:false);
+
+                if (Activator.CreateInstance(actionType) is IUnique actionInstance)
+                {
+                    actions.Add(actionInstance);
+                }
+                else
+                {
+                    Console.WriteLine($"Could not instantiate action: {actionName}");
+                    throw new JsonException($"Could not instantiate action: {actionName}");
+                }
+            }
+            return actions;
+        }
         private List<IEffect> DeserializeEffects(JsonElement effectsElement, JsonSerializerOptions options)
         {
             var effects = new List<IEffect>();

@@ -19,7 +19,7 @@
                 {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
         ],
         "ServantActions": [
-            "Excalibur", "Invisible Air"
+            "Excalibur", "InvisibleAir"
         ]
     },
     {
@@ -42,7 +42,7 @@
                 {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
         ],
         "ServantActions": [
-            "Gae Bolg", "Rune Magic"
+            "GaeBolg", "RuneMagic"
         ]
     }
 ]

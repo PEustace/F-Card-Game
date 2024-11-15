@@ -7,8 +7,8 @@ namespace Game {
         //
         //
         List<Card> handContents = new List<Card>();
-        List<Card> servantContents = new List<Card>();
-        Card activeServant;
+        List<Servant> servantContents = new List<Servant>();
+        Servant activeServant;
 
         //PUBLIC
         //
@@ -28,18 +28,18 @@ namespace Game {
         public List<Card> GetContents() {
             return handContents;
         }
-        public List<Card> GetServants() {
+        public List<Servant> GetServants() {
             return servantContents;
         }
         public void SetRandomServant() {
             Random rand = new Random();
 
             int randInt = rand.Next(0, servantContents.Count);
-            Card chosenServant = servantContents[randInt];
+            Servant chosenServant = servantContents[randInt];
 
             activeServant = chosenServant;
         }
-        public Card GetActiveServant() {
+        public Servant GetActiveServant() {
             return activeServant;
         }
     }

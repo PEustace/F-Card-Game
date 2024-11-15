@@ -55,7 +55,7 @@ namespace Game {
 
             var cards = JsonSerializer.Deserialize<List<Servant>>(json, options);
 
-            foreach (Card card in cards){ 
+            foreach (Servant card in cards){ 
                 Console.WriteLine("Servant Name: " + card.GetName());
             }
 
@@ -95,8 +95,8 @@ namespace Game {
             }
             return movingCards;
         }
-        public List<Card> DrawServants(int countToPull) {
-            List<Card> movingCards = new();
+        public List<Servant> DrawServants(int countToPull) {
+            List<Servant> movingCards = new();
             for (int i = countToPull - 1; i >= 0; i--) {
                 Console.WriteLine("Adding servant to servant hand");
                 try {
@@ -104,7 +104,8 @@ namespace Game {
                     contents.Remove(servants[i]);
                 }
                 catch {
-                    movingCards.Add(dummyCard);
+                    Console.WriteLine("Invalid card.");
+                    break;
                 }
             }
             return movingCards;

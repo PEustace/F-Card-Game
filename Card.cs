@@ -44,7 +44,7 @@ namespace Game {
     }
     //Servants have a few extra rules to normal cards. See rulebook.
     public class Servant : Card {
-        public List<IEffect> ServantActions {get; set;}
+        public List<IUnique> ServantActions {get; set;}
 
         public void ListActions() {
             for (int i = 0; i <= ServantActions.Count; i++) {

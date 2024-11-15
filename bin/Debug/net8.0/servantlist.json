@@ -17,6 +17,9 @@
                 {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, 
             {"ChangeCardValue": 
                 {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
+        ],
+        "ServantActions": [
+            "Excalibur", "InvisibleAir"
         ]
     },
     {
@@ -37,6 +40,9 @@
                 {"newPlayerValue": {"canSurvey": false}, "which": "enemy", "effectMessage": "unable to survey."}}, 
             {"ChangeCardValue": 
                 {"newCardValue": {"cardExpires": true}, "which": "player"}, "effectMessage": "will expire soon."}
+        ],
+        "ServantActions": [
+            "GaeBolg", "RuneMagic"
         ]
     }
 ]

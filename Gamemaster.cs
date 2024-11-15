@@ -183,7 +183,17 @@ namespace Game {
             }
         }
         public void RequestServantAction(PlayerData activePlayer, PlayerData enemyPlayer) {
-            int choiceAction = Convert.ToInt32(Console.ReadLine());
+            bool turnActive = true;
+            while (turnActive == true) {
+                try {
+                    int choiceAction = Convert.ToInt32(Console.ReadLine());
+                    activePlayer.GetHand().GetActiveServant().ServantActions[choiceAction].ApplyUnique(activePlayer, enemyPlayer);
+                }
+                catch {
+                    Console.WriteLine("You did something wrong!");
+                }
+            }
+            
         }
         public void RequestPlayCard(PlayerData activePlayer, List<Card> playerHand, PlayerData enemyPlayer) {
             int choice = Convert.ToInt32(Console.ReadLine());
